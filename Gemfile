@@ -39,6 +39,8 @@ gem "bootsnap", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[mri mingw x64_mingw]
+  gem "faker"
+  gem "rspec-rails"
   gem "rubocop", require: false
   gem "rubocop-rails", require: false
 end
@@ -46,4 +48,17 @@ end
 group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+end
+
+group :test do
+  # Generate seed with fake data for testing
+  gem "factory_bot_rails"
+  # For easy generation of tests
+  gem "shoulda-matchers"
+  # Clear test database on each rspec execution
+  gem "database_cleaner-active_record"
+  # Test coverage
+  gem "simplecov", require: false
+  # Stub Requests
+  gem "webmock"
 end
