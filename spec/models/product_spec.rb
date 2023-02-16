@@ -13,4 +13,12 @@ RSpec.describe Product, type: :model do
       should validate_uniqueness_of(:name)
     end
   end
+
+  describe "create a product" do
+    let(:test_product) { build(:product) }
+
+    it "should return a product" do
+      expect(test_product).to_not be_nil
+    end
+  end
 end
