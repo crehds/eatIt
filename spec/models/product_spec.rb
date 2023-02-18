@@ -12,6 +12,10 @@ RSpec.describe Product, type: :model do
     it "validate uniqueness of name column" do
       should validate_uniqueness_of(:name)
     end
+
+    it "validate index of name column" do
+      should have_db_index(:name)
+    end
   end
 
   describe "create a product" do
