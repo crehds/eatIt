@@ -19,5 +19,17 @@ RSpec.describe "Products endpoint", type: :request do
         expect(response).to have_http_status(200)
       end
     end
+
+    describe "GET /products/#{id}" do
+      let!(:product) { create(:product) }
+
+      it "should return a product" do
+        get "/products/#{product.id}"
+        payload = JSON.parse(response.body)
+        expect(payload).to_not be_empty
+        expect(payload["id"]).to eq(product.id)
+        expect(response).to have_http_status(200)
+      end
+    end
   end
 end

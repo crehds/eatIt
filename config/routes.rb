@@ -7,4 +7,5 @@ Rails.application.routes.draw do
 
   # root "articles#index"
   get "/products", to: "products#index"
+  get "/products/:id", to: "products#show"
 end
