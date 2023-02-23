@@ -42,5 +42,14 @@ RSpec.describe "Products endpoint", type: :request do
         expect(response).to have_http_status(200)
       end
     end
+
+    describe "POST /products" do
+      let(:product) { attributes_for(:product_params) }
+      it "should create a product" do
+        post "/products", params: { product: }
+        payload = JSON.parse(response.body)
+        expect(payload["id"]).to_not be_nil
+      end
+    end
   end
 end
