@@ -23,6 +23,15 @@ class ProductsController < ApplicationController
     end
   end
 
+  def update
+    @product = Product.find(params[:id])
+    if @product.update(product_params)
+      render json: @product
+    else
+      render json: @product.errors, status: :unprocessable_entity
+    end
+  end
+
   def product_params
     params.require(:product).permit(:name, :description, :price, :category)
   end
