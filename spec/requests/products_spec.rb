@@ -67,4 +67,12 @@ RSpec.describe "Products endpoint", type: :request do
       expect(payload["description"]).to eq(updated_product[:description])
     end
   end
+
+  describe "DELETE /products/#{id}" do
+    let!(:products) { create_list(:product, 2) }
+    it "should delete a product" do
+      delete "/products/#{products[0].id}"
+      expect(Product.all.size).to eq(1)
+    end
+  end
 end

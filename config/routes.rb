@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   # health endpoint
   get "/health", to: "health#health"
 
+  delete "/products/:id", to: "products#destroy"
+
   # root "articles#index"
   get "/products", to: "products#index"
   get "/products/new", to: "products#new", as: :new_product
