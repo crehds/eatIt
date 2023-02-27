@@ -39,5 +39,6 @@ class ProductsController < ApplicationController
   def destroy
     @product = Product.find(params[:id])
     @product.destroy
+    render json: { message: "Product deleted" }, status: :ok
   end
 end

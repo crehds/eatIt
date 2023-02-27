@@ -72,6 +72,8 @@ RSpec.describe "Products endpoint", type: :request do
     let!(:products) { create_list(:product, 2) }
     it "should delete a product" do
       delete "/products/#{products[0].id}"
+      payload = JSON.parse(response.body)
+      expect(payload["message"]).to eq("Product deleted")
       expect(Product.all.size).to eq(1)
     end
   end
