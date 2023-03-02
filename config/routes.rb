@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   get "/health", to: "health#health"
 
   resources :products
+  get "/orders", to: "orders#index"
 end
