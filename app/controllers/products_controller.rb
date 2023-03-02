@@ -9,11 +9,6 @@ class ProductsController < ApplicationController
     render json: @product, status: :ok
   end
 
-  def new
-    @product = Product.new
-    render json: @product
-  end
-
   def create
     @product = Product.new(product_params)
     if @product.save

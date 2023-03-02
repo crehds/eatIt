@@ -10,17 +10,6 @@ RSpec.describe "Products endpoint", type: :request do
     end
   end
 
-  describe "GET /products/new" do
-    let!(:product) { build(:product) }
-
-    it "should return a product" do
-      get "/products/new"
-      payload = JSON.parse(response.body)
-
-      expect(payload.keys).to eq(product.attributes.keys)
-    end
-  end
-
   describe "with data in DB" do
     let!(:products) { create_list(:product, 10) }
 

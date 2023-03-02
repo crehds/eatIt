@@ -5,12 +5,5 @@ Rails.application.routes.draw do
   # health endpoint
   get "/health", to: "health#health"
 
-  delete "/products/:id", to: "products#destroy"
-
-  post "/products", to: "products#create"
-  patch "/products/:id", to: "products#update"
-
-  get "/products/new", to: "products#new", as: :new_product
-  get "/products", to: "products#index"
-  get "/products/:id", to: "products#show", as: :product
+  resources :products
 end
