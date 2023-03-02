@@ -6,4 +6,10 @@ RSpec.describe Order, type: :model do
       should validate_presence_of(:delivery_address)
     end
   end
+
+  describe "associations" do
+    it "validate has many order details" do
+      should have_many(:order_details)
+    end
+  end
 end

@@ -17,4 +17,10 @@ RSpec.describe Product, type: :model do
       should have_db_index(:name)
     end
   end
+
+  describe "associations" do
+    it "validate has many order details" do
+      should have_many(:order_details)
+    end
+  end
 end
