@@ -41,4 +41,25 @@ RSpec.describe "Orders", type: :request do
       expect(Order.all).to be_empty
     end
   end
+
+  describe "PATCH /orders/#{id}" do
+    let!(:order_saved) { create(:order) }
+    let!(:order_for_update) { attributes_for(:order) }
+    let!(:order_with_error) { { delivery_address: nil } }
+
+    it "should update a order" do
+      patch "/orders/#{order_saved.id}", params: { order: { **order_for_update } }
+
+      payload = JSON.parse(response.body)
+      expect(payload["id"]).to eq(order_saved.id)
+      expect(payload["delivery_address"]).to eq(order_for_update[:delivery_address])
+    end
+
+    it "should not update a order" do
+      patch "/orders/#{order_saved.id}", params: { order: { **order_with_error } }
+
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(Order.first.delivery_address).to eq(order_saved.delivery_address)
+    end
+  end
 end

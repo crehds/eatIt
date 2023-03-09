@@ -18,6 +18,15 @@ class OrdersController < ApplicationController
     end
   end
 
+  def update
+    @order = Order.find(params[:id])
+    if @order.update(order_params)
+      render json: @order, status: :created
+    else
+      render json: @order.errors, status: :unprocessable_entity
+    end
+  end
+
   def order_params
     params.require(:order).permit(:delivery_address)
   end
