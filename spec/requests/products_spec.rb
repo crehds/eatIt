@@ -58,6 +58,13 @@ RSpec.describe "Products endpoint", type: :request do
       expect(payload["id"]).to_not be_nil
       expect(payload).to include("name", "description", "category", "price")
     end
+
+    it "should not create a product" do
+      post "/products", params: { product: { **product, name: nil } }
+
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(Product.all).to be_empty
+    end
   end
 
   describe "PATCH /products/#{id}" do
