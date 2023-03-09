@@ -7,4 +7,5 @@ Rails.application.routes.draw do
 
   resources :products
   get "/orders", to: "orders#index"
+  get "/orders/:id", to: "orders#show"
 end
