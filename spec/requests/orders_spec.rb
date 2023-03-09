@@ -62,4 +62,28 @@ RSpec.describe "Orders", type: :request do
       expect(Order.first.delivery_address).to eq(order_saved.delivery_address)
     end
   end
+
+  describe "DELETE /orders/#{id}" do
+    let(:order) { create(:order) }
+
+    it "should delete a order" do
+      delete "/orders/#{order.id}"
+
+      payload = JSON.parse(response.body)
+      expect(payload["message"]).to eq("Order deleted")
+      expect(Order.all).to be_empty
+    end
+  end
+
+  describe "DELETE /orders/#{id} with data in DB" do
+    let(:orders) { create_list(:order, 2) }
+
+    it "should delete just one order" do
+      delete "/orders/#{orders[0].id}"
+
+      payload = JSON.parse(response.body)
+      expect(payload["message"]).to eq("Order deleted")
+      expect(Order.count).to eq(1)
+    end
+  end
 end

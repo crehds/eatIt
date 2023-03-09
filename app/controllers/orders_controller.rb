@@ -27,6 +27,13 @@ class OrdersController < ApplicationController
     end
   end
 
+  def destroy
+    @order = Order.find(params[:id])
+    @order.destroy
+
+    render json: { message: "Order deleted" }, status: :ok
+  end
+
   def order_params
     params.require(:order).permit(:delivery_address)
   end
