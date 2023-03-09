@@ -36,6 +36,18 @@ RSpec.describe "Products endpoint", type: :request do
     end
   end
 
+  describe "GET /products/#{id} with data in DB" do
+    let!(:products) { create_list(:product, 10) }
+    let!(:product) { products.sample }
+
+    it "should return a product" do
+      get "/products/#{product.id}"
+
+      payload = JSON.parse(response.body)
+      expect(payload["id"]).to eq(product.id)
+    end
+  end
+
   describe "POST /products" do
     let!(:product) { attributes_for(:product_params) }
 
