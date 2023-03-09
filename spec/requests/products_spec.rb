@@ -39,6 +39,7 @@ RSpec.describe "Products endpoint", type: :request do
       post "/products", params: { product: }
       payload = JSON.parse(response.body)
       expect(payload["id"]).to_not be_nil
+      expect(payload).to include("name", "description", "category", "price")
     end
   end
 
