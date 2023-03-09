@@ -4,17 +4,19 @@ RSpec.describe "Products endpoint", type: :request do
   describe "GET /products" do
     it "should return OK" do
       get "/products"
+
       payload = JSON.parse(response.body)
       expect(payload).to be_empty
       expect(response).to have_http_status(200)
     end
   end
 
-  describe "with data in DB" do
+  describe "GET /products with data in DB" do
     let!(:products) { create_list(:product, 10) }
 
     it "should return all products" do
       get "/products"
+
       payload = JSON.parse(response.body)
       expect(payload.size).to eq(products.size)
       expect(response).to have_http_status(200)
@@ -26,6 +28,7 @@ RSpec.describe "Products endpoint", type: :request do
 
     it "should return a product" do
       get "/products/#{product.id}"
+
       payload = JSON.parse(response.body)
       expect(payload).to_not be_empty
       expect(payload["id"]).to eq(product.id)
@@ -34,9 +37,11 @@ RSpec.describe "Products endpoint", type: :request do
   end
 
   describe "POST /products" do
-    let(:product) { attributes_for(:product_params) }
+    let!(:product) { attributes_for(:product_params) }
+
     it "should create a product" do
       post "/products", params: { product: }
+
       payload = JSON.parse(response.body)
       expect(payload["id"]).to_not be_nil
       expect(payload).to include("name", "description", "category", "price")
@@ -60,11 +65,13 @@ RSpec.describe "Products endpoint", type: :request do
 
   describe "DELETE /products/#{id}" do
     let!(:products) { create_list(:product, 2) }
+
     it "should delete a product" do
       delete "/products/#{products[0].id}"
+
       payload = JSON.parse(response.body)
       expect(payload["message"]).to eq("Product deleted")
-      expect(Product.all.size).to eq(1)
+      expect(Product.count).to eq(1)
     end
   end
 end
