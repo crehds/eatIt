@@ -13,4 +13,21 @@ RSpec.describe OrdersController, type: :controller do
       should permit(:delivery_address).for(:create, params: { order: })
     end
   end
+
+  describe "PATCH #update" do
+    before do
+      create(:order, id: 1)
+    end
+
+    let!(:order) { attributes_for(:order) }
+
+    it do
+      params = {
+        id: 1,
+        order:
+      }
+
+      should permit(:delivery_address).for(:update, params:).on(:order)
+    end
+  end
 end
