@@ -10,7 +10,7 @@ RSpec.describe OrdersController, type: :controller do
   describe "POST #create" do
     let!(:order) { attributes_for(:order) }
     it do
-      should permit(:delivery_address).for(:create, params: { order: })
+      should permit(:delivery_address).for(:create, params: { order: }).on(:order)
     end
   end
 

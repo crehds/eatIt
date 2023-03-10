@@ -10,7 +10,8 @@ RSpec.describe ProductsController, type: :controller do
   describe "POST #create" do
     let(:product) { attributes_for(:product_params) }
     it do
-      should permit(:name, :description, :price, :category).for(:create, params: { product: })
+      should permit(:name, :description, :price, :category).for(:create,
+                                                                params: { product: }).on(:product)
     end
   end
 end
