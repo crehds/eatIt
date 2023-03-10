@@ -80,6 +80,13 @@ RSpec.describe "Products endpoint", type: :request do
       expect(payload["price"]).to eq(updated_product[:price])
       expect(payload["description"]).to eq(updated_product[:description])
     end
+
+    it "should not update a product" do
+      patch "/products/#{product.id}", params: { product: { **updated_product, price: nil } }
+
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(Product.first.price).to eq(product.price)
+    end
   end
 
   describe "DELETE /products/#{id}" do
