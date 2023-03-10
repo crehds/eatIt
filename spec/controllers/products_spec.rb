@@ -14,4 +14,21 @@ RSpec.describe ProductsController, type: :controller do
                                                                 params: { product: }).on(:product)
     end
   end
+
+  describe "PATCH #update" do
+    before do
+      create(:product, id: 1)
+    end
+
+    let!(:product) { attributes_for(:product_params) }
+
+    it do
+      params = {
+        id: 1,
+        product:
+      }
+
+      should permit(:name, :description, :category, :price).for(:update, params:).on(:product)
+    end
+  end
 end
