@@ -23,18 +23,15 @@ RSpec.describe "Orders", type: :request do
 
   describe "POST /orders" do
     let!(:products) { create_list(:product, 10) }
-    let!(:order) { attributes_for(:order) }
+    let!(:order_with_items) { order_with_details(3) }
     let!(:order_with_error) { { delivery_address: nil } }
 
     it "should create a product" do
-      items = [
-        { id: products[0].id, quantity: 2 },
-        { id: products[2].id, quantity: 3 },
-        { id: products[0].id, quantity: 5 }
-      ]
+      order, items = order_with_items
       post "/orders", params: { order:, items: }
 
       payload = JSON.parse(response.body)
+      puts payload
       expect(payload).to_not be_empty
       expect(payload["id"]).to_not be_nil
       expect(payload["delivery_address"]).to eq(order[:delivery_address])
