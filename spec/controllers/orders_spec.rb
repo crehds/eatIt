@@ -8,25 +8,33 @@ RSpec.describe OrdersController, type: :controller do
   end
 
   describe "POST #create" do
-    let!(:order) { attributes_for(:order) }
+    before do
+      create_list(:product, 10)
+    end
+
+    let!(:order_with_items) { order_with_details(3) }
+
     it do
-      should permit(:delivery_address).for(:create, params: { order: }).on(:order)
+      order, items = order_with_items
+      should permit(:delivery_address).for(:create, params: { order:, items: }).on(:order)
     end
   end
 
   describe "PATCH #update" do
     before do
-      create(:order, id: 1)
+      create_list(:product, 10)
+      @order = create(:order)
     end
 
-    let!(:order) { attributes_for(:order) }
+    let!(:order_with_items) { order_with_details(3) }
 
     it do
+      order, items = order_with_items
       params = {
-        id: 1,
-        order:
+        id: @order.id,
+        order:,
+        items:
       }
-
       should permit(:delivery_address).for(:update, params:).on(:order)
     end
   end
