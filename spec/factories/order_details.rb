@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :order_details do
+  factory :order_detail do
     order
     product  { Product.all.sample }
     quantity { Faker::Number.between(from: 1, to: 10) }
