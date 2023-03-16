@@ -1,6 +1,11 @@
 require "rails_helper"
 
 RSpec.describe "Orders", type: :request do
+  before(:each) do
+    create_list(:product, 10)
+    Faker::Food.unique.clear
+  end
+
   describe "GET /index" do
     it "should return empty" do
       get "/orders"
@@ -11,7 +16,6 @@ RSpec.describe "Orders", type: :request do
   end
 
   describe "GET /orders/#{id}" do
-    let!(:products) { create_list(:product, 10) }
     let!(:order) { create(:order, order_details_count: 3) }
 
     it "should return a order" do
@@ -23,7 +27,6 @@ RSpec.describe "Orders", type: :request do
   end
 
   describe "POST /orders" do
-    let!(:products) { create_list(:product, 10) }
     let!(:order_with_items) { order_with_details(3) }
     let!(:order_with_error) { { delivery_address: nil } }
 
