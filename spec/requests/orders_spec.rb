@@ -11,7 +11,8 @@ RSpec.describe "Orders", type: :request do
   end
 
   describe "GET /orders/#{id}" do
-    let!(:order) { create(:order) }
+    let!(:products) { create_list(:product, 10) }
+    let!(:order) { create(:order, order_details_count: 3) }
 
     it "should return a order" do
       get "/orders/#{order.id}"
