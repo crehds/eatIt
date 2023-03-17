@@ -13,6 +13,8 @@ class OrdersController < ApplicationController
     Order.transaction do
       @order = Order.new(order_params)
       if @order.save
+        raise NotItemsError if params[:items].empty?
+
         params[:items].each do |item|
           product = Product.find(item[:id])
           @order.order_details.create!(product:, quantity: item[:quantity])
