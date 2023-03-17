@@ -8,6 +8,7 @@ FactoryBot.define do
 
     order_details do
       products = Product.all.sample(order_details_count)
+
       Array.new(order_details_count) do |i|
         association(:order_detail, product: products[i], order: instance)
       end
@@ -15,9 +16,10 @@ FactoryBot.define do
   end
 end
 
-def order_with_details(order_details_count)
+def order_with_details(order_details_count, details = true)
   FactoryBot.attributes_for(:order) do |order|
-    items = order_details_as_items(order_details_count)
+    items = []
+    items = order_details_as_items(order_details_count) if details == true
     return [order, items]
   end
 end

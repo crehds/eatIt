@@ -49,6 +49,19 @@ RSpec.describe "Orders", type: :request do
     end
   end
 
+  describe "POST /orders without items" do
+    let!(:order_with_items) { order_with_details(3, false) }
+
+    it "should don't create a order" do
+      order, = order_with_items
+      post "/orders", params: { order:, items: [nil] }
+
+      payload = JSON.parse(response.body)
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(payload["message"]).to eq("The order not has items to save")
+    end
+  end
+
   describe "PATCH /orders/#{id}" do
     let!(:order_saved) { create(:order) }
     let!(:order_for_update) { attributes_for(:order) }
