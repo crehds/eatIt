@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  rescue_from NotItemsError, with: :render_not_items_error
+
   def index
     @orders = Order.all
     render json: @orders, status: :ok
@@ -13,7 +15,7 @@ class OrdersController < ApplicationController
     Order.transaction do
       @order = Order.new(order_params)
       if @order.save
-        raise NotItemsError if params[:items].empty?
+        raise NotItemsError if params[:items].blank?
 
         params[:items].each do |item|
           product = Product.find(item[:id])
@@ -43,7 +45,13 @@ class OrdersController < ApplicationController
     render json: { message: "Order deleted" }, status: :ok
   end
 
+  private
+
   def order_params
     params.require(:order).permit(:delivery_address)
+  end
+
+  def render_not_items_error
+    render json: { message: "The order not has items to save" }, status: :unprocessable_entity
   end
 end

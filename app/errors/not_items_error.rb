@@ -1,0 +1,1 @@
+class NotItemsError < StandardError; end
