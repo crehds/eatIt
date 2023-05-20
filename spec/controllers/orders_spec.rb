@@ -20,6 +20,21 @@ RSpec.describe OrdersController, type: :controller do
     end
   end
 
+  describe "POST #create orders without items" do
+    # * This test working if you remove the rescue_from in the controller
+    # let!(:order_without_items) { order_with_details(3, false) }
+
+    # it "should raise an NotItemsError" do
+    #   order, = order_without_items
+
+    #   expect { post :create, params: { order:, items: [] } }.to raise_error(NotItemsError)
+    # end
+
+    it "should be rescue from a NotItemsError" do
+      should rescue_from(NotItemsError).with(:render_not_items_error)
+    end
+  end
+
   describe "PATCH #update" do
     before do
       create_list(:product, 10)
