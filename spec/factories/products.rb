@@ -9,7 +9,7 @@ FactoryBot.define do
   factory :product_params, class: "Product" do
     name { Faker::Food.unique.dish }
     price { Faker::Number.between(from: 10, to: 100) }
-    category { %w[starter hamburguer drink crisper complement salad dessert].sample }
+    category { %w[appetizer hamburguer drink crisper side salad dessert ribs tacos].sample }
     description { Faker::Food.description }
   end
 end
