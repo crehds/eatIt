@@ -1,0 +1,14 @@
+order_1:
+  delivery_address: "Calle de la Piruleta, 1"
+
+order_2:
+  delivery_address: "Jr. Los Girasoles, 2"
+
+order_3:
+  delivery_address: "Av. Los Pinos, 3"
+
+order_4:
+  delivery_address: "Calle Gran Vía, 4"
+
+order_5:
+  delivery_address: "Av. Mariscal Castilla, 5"

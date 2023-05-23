@@ -1,0 +1,84 @@
+order_details_1:
+  order: order_1
+  product: quesadilla_bites
+  quantity: 2
+
+order_details_2:
+  order: order_1
+  product: guacamole_burger
+  quantity: 2
+
+order_details_3:
+  order: order_1
+  product: pilsen
+  quantity: 4
+
+order_details_4:
+  order: order_2
+  product: triple_dipper
+  quantity: 2
+
+order_details_5:
+  order: order_2
+  product: bacon_cheeseburger
+  quantity: 1
+
+order_details_6:
+  order: order_2
+  product: chicken_crispers_with_original_bbq
+  quantity: 1
+
+order_details_7:
+  order: order_2
+  product: inka
+  quantity: 2
+
+order_details_8:
+  order: order_3
+  product: chicken_crispers
+  quantity: 1
+
+order_details_9:
+  order: order_3
+  product: southwestern_eggrolls
+  quantity: 1
+
+order_details_10:
+  order: order_3
+  product: margarita_grilled_chicken_sandwich
+  quantity: 2
+
+order_details_11:
+  order: order_4
+  product: chicken_crispers
+  quantity: 3
+
+order_details_12:
+  order: order_4
+  product: crispy_chicken_tacos
+  quantity: 6
+
+order_details_13:
+  order: order_4
+  product: corn_on_the_cob
+  quantity: 3
+
+order_details_14:
+  order: order_5
+  product: chicken_crispers
+  quantity: 2
+
+order_details_15:
+  order: order_5
+  product: crispy_chicken_tacos
+  quantity: 2
+
+order_details_16:
+  order: order_5
+  product: black_beans
+  quantity: 2
+
+order_details_17:
+  order: order_5
+  product: pilsen
+  quantity: 2

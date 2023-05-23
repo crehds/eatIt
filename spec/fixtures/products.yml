@@ -1,0 +1,378 @@
+quesadilla_bites:
+  name: Quesadilla Bites
+  price: 4.99
+  description: >
+    Crispy flour tortillas filled with melted cheese, green chiles and jalapeños.
+    Served with guacamole, sour cream and pico de gallo.
+  category: appetizer
+
+quesadillas_chicken:
+  name: Quesadillas Chicken
+  price: 7.99
+  description: >
+    Flour tortillas filled with melted cheese, green chiles and tender pieces of
+    chicken. Served with guacamole, sour cream and pico de gallo.
+  category: appetizer
+
+triple_dipper:
+  name: Triple Dipper
+  price: 11.99
+  description: >
+    Choose three of your favorite appetizers! Served with dipping sauces.
+  category: appetizer
+
+chicken_crispers:
+  name: Chicken Crispers
+  price: 9.99
+  description: >
+    Crispy chicken strips served with corn on the cob, homestyle fries and your
+    choice of BBQ sauce, honey-mustard or ranch dipping sauce.
+  category: appetizer
+
+southwestern_eggrolls:
+  name: Southwestern Eggrolls
+  price: 8.99
+  description: >
+    Crispy flour tortillas stuffed with juicy smoked chicken, black beans,
+    corn, jalapeño Jack cheese, chopped red peppers and spinach. Served with
+    avocado-ranch dressing.
+  category: appetizer
+
+chicky_chicky_bleu_bleu_burger:
+  name: Chicky Chicky Bleu Bleu Burger
+  price: 10.99
+  description: >
+    Grilled chicken breast topped with applewood smoked bacon, bleu cheese crumbles,
+    house-made pico de gallo, crispy onion strings, avocado slices with ranch.
+    Served with fries.
+  category: hamburguer
+
+oldtimer_with_cheese:
+  name: Oldtimer with Cheese
+  price: 9.99
+  description: >
+    100% USDA Choice beef, seasoned with salt & pepper, topped with cheese, lettuce,
+    tomato, sliced red onion, pickles & mustard. Served with fries.
+  category: hamburguer
+
+guacamole_burger:
+  name: Guacamole Burger
+  price: 10.99
+  description: >
+    100% USDA Choice beef, seasoned with salt & pepper, topped with house-made
+    guacamole, melted cheese, lettuce, tomato, sliced red onion & mayo. Served
+    with fries.
+  category: hamburguer
+
+oldtimer:
+  name: Oldtimer
+  price: 8.99
+  description: >
+    100% USDA Choice beef, seasoned with salt & pepper, topped with lettuce, tomato,
+    sliced red onion, pickles & mustard. Served with fries.
+  category: hamburguer
+
+bacon_cheeseburger:
+  name: Bacon Cheeseburger
+  price: 9.99
+  description: >
+    100% USDA Choice beef, seasoned with salt & pepper, topped with bacon, cheese,
+    lettuce, tomato, sliced red onion, pickles & mustard. Served with fries.
+  category: hamburguer
+
+margarita_grilled_chicken_sandwich:
+  name: Margarita Grilled Chicken Sandwich
+  price: 9.99
+  description: >
+    100% USDA Choice beef, seasoned with salt & pepper, topped with bacon, cheese,
+    lettuce, tomato, sliced red onion, pickles & mustard. Served with fries.
+  category: crisper
+
+chicken_crispers_with_ranch:
+  name: Chicken Crispers with Ranch
+  price: 9.99
+  description: >
+    Crispers on top of Belgian waffles. Topped with bacon, jalapeños & drizzled
+    with ancho-chile ranch. Served with fries & honey-chipotle sauce.
+  category: crisper
+
+chicken_crispers_with_original_bbq:
+  name: Chicken Crispers with Original BBQ
+  price: 9.99
+  description: >
+    Crispers on top of Belgian waffles. Topped with bacon, jalapeños & drizzled
+    with ancho-chile ranch. Served with fries & honey-chipotle sauce.
+  category: crisper
+
+chicken_crispers_with_honey_chipotle:
+  name: Chicken Crispers with Honey Chipotle
+  price: 9.99
+  description: >
+    Crispers on top of Belgian waffles. Topped with bacon, jalapeños & drizzled
+    with ancho-chile ranch. Served with fries & honey-chipotle sauce.
+  category: crisper
+
+amstell_light:
+  name: Amstell Light
+  price: 4.99
+  description: >
+    Amstell Light is brewed in Amsterdam, part of brewing tradition that dates
+    back to 1870. At just 95 calories per bottle, its unique mixture of barley
+    and hops delivers a full - never diluted - flavor that's just as tasty as
+    regular beer.
+  category: drink
+
+corona_extra:
+  name: Corona Extra
+  price: 4.99
+  description: >
+    Corona Extra is the number-one selling beer in Mexico and the leading export
+    brand from Mexico. This pilsener type beer was first brewed in 1925 by Cervecería
+    Modelo, located in Mexico City.
+  category: drink
+
+pilsen:
+  name: Pilsen
+  price: 4.99
+  description: >
+    Pilsen is a pale lager with a golden color that is well balanced with a smooth
+    bitterness that is complimented by its aromatic hoppy character.
+  category: drink
+
+budweiser:
+  name: Budweiser
+  price: 4.99
+  description: >
+    Budweiser is a medium-bodied, flavorful, crisp American-style lager. Brewed
+    with the best barley malt and a blend of premium hop varieties, it is an icon
+    of core American values like optimism and celebration.
+  category: drink
+
+sprite:
+  name: Sprite
+  price: 2.99
+  description: >
+    Sprite is a lemon-lime flavored soft drink with a crisp, clean taste that
+    gives you the ultimate cut-through refreshment.
+  category: drink
+
+diet_coke:
+  name: Diet Coke
+  price: 2.99
+  description: >
+    Diet Coke is a sugar free, low calorie soft drink. No Sugar No Calories Gluten-free,
+    dairy-free and nut-free Contains vegetables extracts and sweeteners Serve
+    over ice with a slice of lime.
+  category: drink
+
+coke_zero:
+  name: Coke Zero
+  price: 2.99
+  description: >
+    Coke Zero is a sugar free, low calorie soft drink with the great taste of
+    original Coca-Cola. Zero sugar Zero Calories Contains vegetable extracts and
+    sweeteners Gluten-free, dairy-free and nut-free Serve ice cold for maximum
+    refreshment.
+  category: drink
+
+coke:
+  name: Coke
+  price: 2.99
+  description: >
+    Coca-Cola is the world's favourite soft drink and has been enjoyed since 1886.
+    Great Coke taste Only natural flavours No added preservatives Gluten-free,
+    dairy-free and nut-free Serve ice cold for maximum refreshment.
+  category: drink
+
+inka:
+  name: Inka_Cola
+  price: 2.99
+  description: >
+    Peruvian drink
+  category: drink
+
+french_fries:
+  name: French Fries
+  price: 2.99
+  description: >
+    French fries
+  category: side
+
+mashed_potatoes:
+  name: Mashed Potatoes
+  price: 2.99
+  description: >
+    Mashed potatoes
+  category: side
+
+corn_on_the_cob:
+  name: Corn on the Cob
+  price: 2.99
+  description: >
+    Corn on the Cob
+  category: side
+
+black_beans:
+  name: Black Beans
+  price: 2.99
+  description: >
+    Black Beans
+  category: side
+
+steamed_broccoli:
+  name: Steamed Broccoli
+  price: 2.99
+  description: >
+    Steamed Broccoli
+  category: side
+
+rice:
+  name: Rice
+  price: 2.99
+  description: >
+    Rice
+  category: side
+
+avocado_chicken_bowl:
+  name: Avocado Chicken Bowl
+  price: 9.99
+  description: >
+    Grilled chicken breast topped with tomatoes, corn, black beans, crispy tortilla
+    strips, cheese, avocado slices & cilantro. Served with house-made ranch
+    dressing & a fresh lime wedge.
+  category: salad
+
+santa_fe_chicken_bowl:
+  name: Santa Fe Chicken Bowl
+  price: 9.99
+  description: >
+    Grilled chicken breast topped with tomatoes, corn, black beans, crispy tortilla
+    strips, cheese, avocado slices & cilantro. Served with house-made ranch
+    dressing & a fresh lime wedge.
+  category: salad
+
+mango_chile_chicken_bowl:
+  name: Mango Chile Chicken Bowl
+  price: 9.99
+  description: >
+    Grilled chicken breast topped with tomatoes, corn, black beans, crispy tortilla
+    strips, cheese, avocado slices & cilantro. Served with house-made ranch
+    dressing & a fresh lime wedge.
+  category: salad
+
+quesadilla_explosion_salad:
+  name: Quesadilla Explosion Salad
+  price: 9.99
+  description: >
+    Grilled chicken breast topped with tomatoes, corn, black beans, crispy tortilla
+    strips, cheese, avocado slices & cilantro. Served with house-made ranch
+    dressing & a fresh lime wedge.
+  category: salad
+
+santa_fe_crisp_salad:
+  name: Santa Fe Crisp Salad
+  price: 9.99
+  description: >
+    Grilled chicken breast topped with tomatoes, corn, black beans, crispy tortilla
+    strips, cheese, avocado slices & cilantro. Served with house-made ranch
+    dressing & a fresh lime wedge.
+  category: salad
+
+grilled_chicken_salad:
+  name: Grilled Chicken Salad
+  price: 9.99
+  description: >
+    Grilled chicken breast topped with tomatoes, corn, black beans, crispy tortilla
+    strips, cheese, avocado slices & cilantro. Served with house-made ranch
+    dressing & a fresh lime wedge.
+  category: salad
+
+santa_fe_salad:
+  name: Santa Fe Salad
+  price: 9.99
+  description: >
+    Grilled chicken breast topped with tomatoes, corn, black beans, crispy tortilla
+    strips, cheese, avocado slices & cilantro. Served with house-made ranch
+    dressing & a fresh lime wedge.
+  category: salad
+
+crispy_chicken_tacos:
+  name: Crispy Chicken Tacos
+  price: 9.99
+  description: >
+    Three tacos in flour tortillas with pico, avocado, Jack cheese, jalapeño aioli,
+    cilantro, queso fresco. Served with Mexican rice & black beans.
+  category: tacos
+
+chicken_club_tacos:
+  name: Chicken Club Tacos
+  price: 9.99
+  description: >
+    Three tacos in flour tortillas with pico, avocado, Jack cheese, jalapeño aioli,
+    cilantro, queso fresco. Served with Mexican rice & black beans.
+  category: tacos
+
+chile_rubbed_steak_tacos:
+  name: Chile Rubbed Steak Tacos
+  price: 9.99
+  description: >
+    Three tacos in flour tortillas with pico, avocado, Jack cheese, jalapeño aioli,
+    cilantro, queso fresco. Served with Mexican rice & black beans.
+  category: tacos
+
+ranchero_chicken_tacos:
+  name: Ranchero Chicken Tacos
+  price: 9.99
+  description: >
+    Three tacos in flour tortillas with pico, avocado, Jack cheese, jalapeño aioli,
+    cilantro, queso fresco. Served with Mexican rice & black beans.
+  category: tacos
+
+chocolate_milkshake:
+  name: Chocolate Milkshake
+  price: 2.99
+  description: >
+    Chocolate Milkshake
+  category: dessert
+
+vanilla_milkshake:
+  name: Vanilla Milkshake
+  price: 2.99
+  description: >
+    Vanilla Milkshake
+  category: dessert
+
+chocolate_brwonie:
+  name: Chocolate Brownie
+  price: 2.99
+  description: >
+    Chocolate Brownie
+  category: dessert
+
+chocolate_chip_cookie:
+  name: Chocolate Chip Cookie
+  price: 2.99
+  description: >
+    Chocolate Chip Cookie
+  category: dessert
+
+molten_chocolate_cake:
+  name: Molten Chocolate Cake
+  price: 2.99
+  description: >
+    Molten Chocolate Cake
+  category: dessert
+
+baby_back_ribs:
+  name: Baby Back Ribs
+  price: 9.99
+  description: >
+    Baby Back Ribs
+  category: ribs
+
+full_rack_ribs:
+  name: Full Rack Ribs
+  price: 9.99
+  description: >
+    Full Rack Ribs
+  category: ribs
