@@ -36,11 +36,19 @@ gem "bootsnap", require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem "rack-cors"
 
+# Serve the OpenAPI document and Swagger UI at /api-docs [https://github.com/rswag/rswag]
+gem "rswag-api"
+gem "rswag-ui"
+# rswag-ui 2.17 requires ostruct without declaring it; Ruby 3.4 warns that ostruct leaves the default gems
+gem "ostruct"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[mri mingw x64_mingw]
   gem "faker"
   gem "rspec-rails"
+  # Build the OpenAPI document from request specs
+  gem "rswag-specs"
   gem "rubocop", require: false
   gem "rubocop-rails", require: false
 end
