@@ -49,15 +49,18 @@ The API runs on Railway: an `eatit` service built with Railpack, plus a Railway 
 
 1. Install the Railway CLI (`brew install railway` or `npm install -g @railway/cli`) and log in: `railway login`.
 2. Link this directory to the project: `railway link` (project `eatIt`, service `eatit`).
-3. Deploy the local code: `railway up --service eatit`.
+3. Deploy by pushing to `main`: Railway builds the GitHub repository and deploys it. `railway up --service eatit` deploys the local code instead, for a quick test.
 
 Each deploy runs `bin/rails db:prepare && bin/rails db:seed` first. The seeds are idempotent: they recreate the demo menu and orders from `spec/fixtures` when they are missing and never duplicate them.
+
+The `eatit-demo-reset` cron service runs `bin/rails demo:reset` every day at 06:00 UTC: it deletes the demo data, including whatever visitors changed, and loads the seeds again. The owner's private data is never touched.
 
 ### Details
 
 | Topic | Where |
 |-------|-------|
-| Service settings (start, pre-deploy, health check) | `.railway/railway.ts`, applied with `railway config plan` and `railway config apply` |
+| Service settings (source, start, pre-deploy, health check, cron) | `.railway/railway.ts`, applied with `railway config plan` and `railway config apply` |
+| Cron service variables | `DATABASE_URL` (reference to the Postgres service), `RAILS_ENV=production`, `SECRET_KEY_BASE_DUMMY=1` (the reset needs no secrets) |
 | SDK that `railway.ts` imports | `npm install railway` in the repository root; `package.json` and `node_modules` stay out of git |
 | Variables | Managed on Railway, never in the repository: `DATABASE_URL` (reference to the Postgres service), `RAILS_ENV`, `RAILS_MASTER_KEY` (the content of `config/master.key`), `OWNER_API_TOKEN` (opens the owner's private data) |
 | Health check | `GET /health` |
