@@ -48,4 +48,14 @@ RSpec.describe "demo:reset" do
     expect(Product.where(demo: true).count).to eq(fixture_count("products"))
     expect(Product.where(demo: true, name: "Chicken Crispers").count).to eq(1)
   end
+
+  it "leaves the same data when it runs twice" do
+    counts = -> { [Product.count, Order.count, OrderDetail.count] }
+    expect { reset }.to output.to_stdout
+    first_run = counts.call
+
+    expect { reset }.to output.to_stdout
+
+    expect(counts.call).to eq(first_run)
+  end
 end

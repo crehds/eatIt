@@ -63,6 +63,33 @@ RSpec.describe "Owner space", type: :request do
 
       expect(Product.find(json["id"]).demo).to be(true)
     end
+
+    it "ignores a root-level demo flag in a JSON body (params wrapping)" do
+      post "/products", params: attributes_for(:product_params).merge(demo: false).to_json,
+                        headers: { "CONTENT_TYPE" => "application/json" }
+
+      expect(response).to have_http_status(:created)
+      expect(Product.find(json["id"]).demo).to be(true)
+    end
+
+    it "never moves a demo product into the owner space" do
+      patch "/products/#{demo_product.id}", params: { product: { demo: false } }
+
+      expect(demo_product.reload.demo).to be(true)
+    end
+
+    it "answers 404 to a visitor PUT on an owner product" do
+      put "/products/#{owner_product.id}", params: { product: { price: 1 } }
+
+      expect(response).to have_http_status(:not_found)
+      expect(owner_product.reload.price).not_to eq(1)
+    end
+
+    it "keeps demo products out of the owner space" do
+      get "/products/#{demo_product.id}", headers: owner_headers
+
+      expect(response).to have_http_status(:not_found)
+    end
   end
 
   describe "orders" do
@@ -96,6 +123,16 @@ RSpec.describe "Owner space", type: :request do
       expect(response).to have_http_status(:not_found)
     end
 
+    it "rejects an order mixing demo and owner products, saving nothing" do
+      expect do
+        post "/orders", params: { order: { delivery_address: "Mixed" },
+                                  items: [{ id: demo_product.id, quantity: 1 },
+                                          { id: owner_product.id, quantity: 1 }] }
+      end.not_to(change { [Order.count, OrderDetail.count] })
+
+      expect(response).to have_http_status(:not_found)
+    end
+
     it "hides owner orders from visitors" do
       get "/orders"
       expect(json.pluck("id")).not_to include(owner_order.id)
@@ -118,6 +155,22 @@ RSpec.describe "Owner space", type: :request do
 
     it "rejects every token when the server has no owner token configured" do
       Rails.configuration.x.owner_api_token = nil
+
+      get "/products", headers: owner_headers
+
+      expect(response).to have_http_status(:unauthorized)
+    end
+
+    ["Basic b3duZXI6c2VjcmV0", "Bearer ", "bearer owner-secret", 'Token token=""'].each do |header|
+      it "answers 401 to the Authorization header #{header.inspect}" do
+        get "/products", headers: { "Authorization" => header }
+
+        expect(response).to have_http_status(:unauthorized)
+      end
+    end
+
+    it "rejects every token when the configured token is blank" do
+      Rails.configuration.x.owner_api_token = ""
 
       get "/products", headers: owner_headers
 
