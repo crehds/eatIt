@@ -44,7 +44,7 @@ RSpec.describe "Orders", type: :request do
     it "should don't create a product" do
       post "/orders", params: { order: { **order_with_error } }
 
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
       expect(Order.all).to be_empty
     end
   end
@@ -57,7 +57,7 @@ RSpec.describe "Orders", type: :request do
       post "/orders", params: { order:, items: [nil] }
 
       payload = JSON.parse(response.body)
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
       expect(payload["message"]).to eq("The order not has items to save")
     end
   end
@@ -78,7 +78,7 @@ RSpec.describe "Orders", type: :request do
     it "should not update a order" do
       patch "/orders/#{order_saved.id}", params: { order: { **order_with_error } }
 
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
       expect(Order.first.delivery_address).to eq(order_saved.delivery_address)
     end
   end

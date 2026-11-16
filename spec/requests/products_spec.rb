@@ -62,7 +62,7 @@ RSpec.describe "Products endpoint", type: :request do
     it "should not create a product" do
       post "/products", params: { product: { **product, name: nil } }
 
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
       expect(Product.all).to be_empty
     end
   end
@@ -84,7 +84,7 @@ RSpec.describe "Products endpoint", type: :request do
     it "should not update a product" do
       patch "/products/#{product.id}", params: { product: { **updated_product, price: nil } }
 
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
       expect(Product.first.price).to eq(product.price)
     end
   end

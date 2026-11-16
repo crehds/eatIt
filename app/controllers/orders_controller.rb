@@ -24,7 +24,7 @@ class OrdersController < ApplicationController
 
         render json: @order, status: :created
       else
-        render json: @order.errors, status: :unprocessable_entity
+        render json: @order.errors, status: :unprocessable_content
       end
     end
   end
@@ -34,7 +34,7 @@ class OrdersController < ApplicationController
     if @order.update(order_params)
       render json: @order, status: :created
     else
-      render json: @order.errors, status: :unprocessable_entity
+      render json: @order.errors, status: :unprocessable_content
     end
   end
 
@@ -52,6 +52,6 @@ class OrdersController < ApplicationController
   end
 
   def render_not_items_error
-    render json: { message: "The order not has items to save" }, status: :unprocessable_entity
+    render json: { message: "The order not has items to save" }, status: :unprocessable_content
   end
 end
