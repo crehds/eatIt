@@ -12,6 +12,16 @@ The API has no frontend: its root redirects to the interactive documentation (Sw
 2. Open http://localhost:3000/ and you land on `/api-docs/index.html`.
 3. Pick an endpoint and use **Try it out** to send a real request.
 
+### Demo data and owner data
+
+| Request | Data it reads and changes |
+|---------|---------------------------|
+| No `Authorization` header | The public demo data, which anyone can change |
+| `Authorization: Bearer <OWNER_API_TOKEN>` (Swagger UI: **Authorize**) | The owner's private data, invisible to visitors |
+| Any other token, or no `OWNER_API_TOKEN` on the server | Rejected with `401 {"error": "Invalid token"}` |
+
+Orders can only use products from their own space.
+
 ### Details
 
 | Topic | Where |
@@ -49,7 +59,7 @@ Each deploy runs `bin/rails db:prepare && bin/rails db:seed` first. The seeds ar
 |-------|-------|
 | Service settings (start, pre-deploy, health check) | `.railway/railway.ts`, applied with `railway config plan` and `railway config apply` |
 | SDK that `railway.ts` imports | `npm install railway` in the repository root; `package.json` and `node_modules` stay out of git |
-| Variables | Managed on Railway, never in the repository: `DATABASE_URL` (reference to the Postgres service), `RAILS_ENV`, `RAILS_MASTER_KEY` (the content of `config/master.key`) |
+| Variables | Managed on Railway, never in the repository: `DATABASE_URL` (reference to the Postgres service), `RAILS_ENV`, `RAILS_MASTER_KEY` (the content of `config/master.key`), `OWNER_API_TOKEN` (opens the owner's private data) |
 | Health check | `GET /health` |
 | HTTPS | Railway terminates TLS; production uses `assume_ssl` and `force_ssl` |
 

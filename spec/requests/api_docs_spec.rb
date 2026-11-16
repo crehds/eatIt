@@ -31,6 +31,14 @@ RSpec.describe "API docs", type: :request do
     expect(schemas.dig("product_update_payload", "properties", "product", "required")).to be_nil
   end
 
+  it "documents the optional owner token and its 401 answer" do
+    document = YAML.safe_load_file(Rails.root.join("swagger/v1/swagger.yaml"))
+
+    expect(document.dig("components", "securitySchemes", "bearer_auth", "scheme")).to eq("bearer")
+    expect(document["security"]).to eq([{}, { "bearer_auth" => [] }])
+    expect(document.dig("paths", "/products", "get", "responses")).to include("401")
+  end
+
   it "keeps the Swagger UI from sending the docs URL to the swagger.io validator" do
     get "/api-docs/index.html"
 

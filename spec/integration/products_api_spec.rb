@@ -14,6 +14,15 @@ RSpec.describe "Products API", type: :request do
           expect(JSON.parse(response.body).size).to eq(2)
         end
       end
+
+      response "401", "the Authorization header holds a token that is not the owner's" do
+        schema "$ref" => "#/components/schemas/unauthorized"
+        let(:Authorization) { "Bearer not-the-owner-token" }
+
+        run_test! do |response|
+          expect(JSON.parse(response.body)).to eq("error" => "Invalid token")
+        end
+      end
     end
 
     post "Creates a product" do

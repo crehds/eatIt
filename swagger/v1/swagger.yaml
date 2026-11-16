@@ -152,6 +152,12 @@ paths:
                 type: array
                 items:
                   "$ref": "#/components/schemas/product"
+        '401':
+          description: the Authorization header holds a token that is not the owner's
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/unauthorized"
     post:
       summary: Creates a product
       tags:
@@ -249,8 +255,25 @@ paths:
                 "$ref": "#/components/schemas/not_found"
 servers:
 - url: "/"
+security:
+- {}
+- bearer_auth: []
 components:
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer
+      description: Owner token (OWNER_API_TOKEN). With it, every endpoint works on
+        the owner's private data instead of the public demo data.
   schemas:
+    unauthorized:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Invalid token
+      required:
+      - error
     health:
       type: object
       properties:

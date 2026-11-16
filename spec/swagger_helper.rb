@@ -27,8 +27,23 @@ RSpec.configure do |config|
       paths: {},
       # A relative server lets "Try it out" call the same host that serves the docs.
       servers: [{ url: "/" }],
+      # The token is optional: without it every endpoint works on the public demo data.
+      security: [{}, { bearer_auth: [] }],
       components: {
+        securitySchemes: {
+          bearer_auth: {
+            type: :http,
+            scheme: :bearer,
+            description: "Owner token (OWNER_API_TOKEN). With it, every endpoint works on the " \
+                         "owner's private data instead of the public demo data."
+          }
+        },
         schemas: {
+          unauthorized: {
+            type: :object,
+            properties: { error: { type: :string, example: "Invalid token" } },
+            required: %w[error]
+          },
           health: {
             type: :object,
             properties: { api: { type: :string, example: "OK" } },
