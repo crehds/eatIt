@@ -1,0 +1,8 @@
+{
+  "$schema": "https://railway.com/railway.schema.json",
+  "deploy": {
+    "preDeployCommand": "bin/rails db:prepare && bin/rails db:seed",
+    "startCommand": "bin/rails server -b ::",
+    "healthcheckPath": "/health"
+  }
+}
