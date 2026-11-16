@@ -59,6 +59,9 @@ RSpec.configure do |config|
 
   config.after(:each) do
     DatabaseCleaner.clean
+    # Each example starts with a clean database, so Faker's unique values only need to be unique
+    # within one example. Without this, the finite Faker::Food.dish list runs out across the suite.
+    Faker::UniqueGenerator.clear
   end
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
