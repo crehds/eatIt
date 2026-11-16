@@ -29,7 +29,12 @@ module EatIt
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
-    # The app stores no attachments; without this, Rails 8.1 warns on every boot that image_processing is missing.
+    # The app stores no attachments; without this, Rails 8.1 warns on every boot that
+    # image_processing is missing.
     config.active_storage.variant_processor = :disabled
+
+    # Secret that opens the owner's private space (Authorization: Bearer <token>). Unset means
+    # no request can reach it.
+    config.x.owner_api_token = ENV["OWNER_API_TOKEN"].presence
   end
 end
