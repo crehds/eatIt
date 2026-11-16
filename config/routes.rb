@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   mount Rswag::Api::Engine => '/api-docs'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
+  # The API has no frontend: the root shows its documentation.
+  root to: redirect("/api-docs/index.html")
+
   # health endpoint
   get "/health", to: "health#health"
 
