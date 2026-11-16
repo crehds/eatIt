@@ -21,4 +21,10 @@ RSpec.describe "API docs", type: :request do
     expect(response).to have_http_status(:ok)
     expect(response.body).to include("swagger-ui")
   end
+
+  it "keeps the Swagger UI from sending the docs URL to the swagger.io validator" do
+    get "/api-docs/index.html"
+
+    expect(response.body).to include('"validatorUrl":null')
+  end
 end
