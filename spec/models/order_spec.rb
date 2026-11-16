@@ -7,6 +7,12 @@ RSpec.describe Order, type: :model do
     end
   end
 
+  describe "space" do
+    it "belongs to the demo space by default" do
+      expect(Order.new.demo).to be(true)
+    end
+  end
+
   describe "associations" do
     it "validate has many order details" do
       should have_many(:order_details)
