@@ -31,3 +31,8 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Railway IaC SDK, needed locally only to run `railway config plan/apply` (see README)
+/package.json
+/package-lock.json
+/node_modules
