@@ -64,6 +64,7 @@ The `eatit-demo-reset` cron service runs `bin/rails demo:reset` every day at 06:
 | SDK that `railway.ts` imports | `npm install railway` in the repository root; `package.json` and `node_modules` stay out of git |
 | Variables | Managed on Railway, never in the repository: `DATABASE_URL` (reference to the Postgres service), `RAILS_ENV`, `RAILS_MASTER_KEY` (the content of `config/master.key`), `OWNER_API_TOKEN` (opens the owner's private data) |
 | Health check | `GET /health` |
+| Serverless | `eatit` sleeps after 10 minutes without traffic; the first request after that waits for the app to boot and may get a 502 |
 | HTTPS | Railway terminates TLS; production uses `assume_ssl` and `force_ssl` |
 
 This README would normally document whatever steps are necessary to get the

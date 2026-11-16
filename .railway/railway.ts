@@ -12,6 +12,9 @@ export default defineRailway(() => {
     healthcheck: "/health",
     preDeploy: "bin/rails db:prepare && bin/rails db:seed",
     replicas: { "us-west2": 1 },
+    // Serverless: sleeps after 10 minutes without outbound traffic, so an idle portfolio
+    // costs almost nothing. The first request after a sleep waits for the boot (and may 502).
+    deploy: { sleepApplication: true },
   });
 
   // Resets the public demo data every day at 06:00 UTC. It runs the task and exits, so it
