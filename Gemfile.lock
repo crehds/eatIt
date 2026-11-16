@@ -162,7 +162,7 @@ GEM
       date
       stringio
     public_suffix (5.0.1)
-    puma (5.6.5)
+    puma (8.1.1)
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (3.2.8)
@@ -285,7 +285,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   pg
-  puma (~> 5.0)
+  puma (>= 5.0)
   rails (~> 7.2.4)
   rspec-rails
   rubocop
