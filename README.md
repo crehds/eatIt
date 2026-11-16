@@ -18,7 +18,16 @@ The API has no frontend: its root redirects to the interactive documentation (Sw
 | Source of the document | rswag specs in `spec/integration/` |
 | Regenerate after changing an endpoint | `RAILS_ENV=test bin/rails rswag:specs:swaggerize` |
 
-`bundle exec rspec` runs the rswag specs too, so a response that stops matching the documentation fails the suite.
+`bundle exec rspec` keeps the documentation honest in two ways:
+
+- The rswag specs send real requests, so an endpoint that stops matching its documented schema fails.
+- A coverage spec fails when a route is missing from `swagger.yaml`, or the file documents one that no longer exists.
+
+The suite does not regenerate `swagger.yaml`. To check that the committed file is current, for example in CI:
+
+```bash
+RAILS_ENV=test bin/rails rswag:specs:swaggerize && git diff --exit-code swagger/v1/swagger.yaml
+```
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
