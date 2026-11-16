@@ -5,7 +5,7 @@ class Product < ApplicationRecord
   validates :price, presence: true
   validates :description, presence: true
   validates :category, presence: true
-  enum category: {
+  enum :category, {
     appetizer: 0,
     hamburguer: 1,
     drink: 2,
