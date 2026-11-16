@@ -28,5 +28,8 @@ module EatIt
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    # The app stores no attachments; without this, Rails 8.1 warns on every boot that image_processing is missing.
+    config.active_storage.variant_processor = :disabled
   end
 end
