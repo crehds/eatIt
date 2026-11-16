@@ -37,7 +37,7 @@ The API runs on Railway: an `eatit` service built with Railpack, plus a Railway 
 
 ### Quick path
 
-1. Install the Railway CLI and log in: `railway login`.
+1. Install the Railway CLI (`brew install railway` or `npm install -g @railway/cli`) and log in: `railway login`.
 2. Link this directory to the project: `railway link` (project `eatIt`, service `eatit`).
 3. Deploy the local code: `railway up --service eatit`.
 

@@ -1,8 +1,9 @@
 # Demo data for the deployed API: the menu and a few orders, taken from the test fixtures so
 # development and production show the same data.
 #
-# Idempotent on purpose: Railway runs it on every deploy (see railway.json). It recreates demo
-# records that are missing and never duplicates them; records added by visitors stay as they are.
+# Idempotent on purpose: Railway runs it on every deploy (see .railway/railway.ts). It
+# recreates demo records that are missing and never duplicates them; records added by
+# visitors stay as they are.
 fixtures = Rails.root.join("spec/fixtures")
 load_fixture = ->(name) { YAML.safe_load_file(fixtures.join("#{name}.yml")) }
 
