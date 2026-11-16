@@ -4,7 +4,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.4.12"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.2.4"
+gem "rails", "~> 8.0.5"
+
+# ActiveSupport 8.0 passes quirks_mode to JSON, which json 3 removed. Drop this pin on Rails 8.1.
+gem "json", "< 3"
 
 # Use postgresql as the database for Active Record
 gem "pg"
