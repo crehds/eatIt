@@ -20,7 +20,8 @@ RSpec.describe "Products API", type: :request do
       tags "Products"
       consumes "application/json"
       produces "application/json"
-      parameter name: :payload, in: :body, schema: { "$ref" => "#/components/schemas/product_payload" }
+      parameter name: :payload, in: :body,
+                schema: { "$ref" => "#/components/schemas/product_create_payload" }
 
       response "201", "product created" do
         schema "$ref" => "#/components/schemas/product"
@@ -37,7 +38,8 @@ RSpec.describe "Products API", type: :request do
         let(:payload) { { product: { name: "" } } }
 
         run_test! do |response|
-          expect(JSON.parse(response.body).keys).to include("name", "price", "description", "category")
+          errors = JSON.parse(response.body)
+          expect(errors.keys).to include("name", "price", "description", "category")
           expect(Product.count).to eq(0)
         end
       end
@@ -73,7 +75,8 @@ RSpec.describe "Products API", type: :request do
       description "PUT /products/{id} behaves the same way."
       consumes "application/json"
       produces "application/json"
-      parameter name: :payload, in: :body, schema: { "$ref" => "#/components/schemas/product_payload" }
+      parameter name: :payload, in: :body,
+                schema: { "$ref" => "#/components/schemas/product_update_payload" }
 
       let(:id) { create(:product).id }
 

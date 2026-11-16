@@ -174,7 +174,7 @@ paths:
         content:
           application/json:
             schema:
-              "$ref": "#/components/schemas/product_payload"
+              "$ref": "#/components/schemas/product_create_payload"
   "/products/{id}":
     parameters:
     - name: id
@@ -229,7 +229,7 @@ paths:
         content:
           application/json:
             schema:
-              "$ref": "#/components/schemas/product_payload"
+              "$ref": "#/components/schemas/product_update_payload"
     delete:
       summary: Deletes a product
       tags:
@@ -301,11 +301,47 @@ components:
       - category
       - created_at
       - updated_at
-    product_payload:
+    product_create_payload:
       type: object
       properties:
         product:
           type: object
+          properties:
+            name:
+              type: string
+              example: Full Rack Ribs
+            description:
+              type: string
+              example: Slow-cooked pork ribs with barbecue sauce.
+            price:
+              type: integer
+              example: 9
+            category:
+              type: string
+              enum:
+              - appetizer
+              - hamburguer
+              - drink
+              - crisper
+              - side
+              - salad
+              - dessert
+              - ribs
+              - tacos
+              example: ribs
+          required:
+          - name
+          - description
+          - price
+          - category
+      required:
+      - product
+    product_update_payload:
+      type: object
+      properties:
+        product:
+          type: object
+          description: Only the fields to change.
           properties:
             name:
               type: string

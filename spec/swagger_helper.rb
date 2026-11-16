@@ -6,13 +6,23 @@ RSpec.configure do |config|
   # `bin/rails rswag:specs:swaggerize` writes the documents here, and rswag-api serves them.
   config.openapi_root = Rails.root.join("swagger").to_s
 
+  product_fields = {
+    name: { type: :string, example: "Full Rack Ribs" },
+    description: { type: :string, example: "Slow-cooked pork ribs with barbecue sauce." },
+    price: { type: :integer, example: 9 },
+    category: { type: :string, enum: Product.categories.keys, example: "ribs" }
+  }
+  delivery_address = { type: :string, example: "123 Main Street" }
+  timestamp = { type: :string, format: "date-time" }
+
   config.openapi_specs = {
     "v1/swagger.yaml" => {
       openapi: "3.0.1",
       info: {
         title: "eatIt API",
         version: "v1",
-        description: "REST API for a restaurant: manage the products on the menu and the orders placed for them."
+        description: "REST API for a restaurant: manage the products on the menu " \
+                     "and the orders placed for them."
       },
       paths: {},
       # A relative server lets "Try it out" call the same host that serves the docs.
@@ -28,26 +38,30 @@ RSpec.configure do |config|
             type: :object,
             properties: {
               id: { type: :integer, example: 1 },
-              name: { type: :string, example: "Full Rack Ribs" },
-              description: { type: :string, example: "Slow-cooked pork ribs with barbecue sauce." },
-              price: { type: :integer, example: 9 },
-              category: { type: :string, enum: Product.categories.keys, example: "ribs" },
-              created_at: { type: :string, format: "date-time" },
-              updated_at: { type: :string, format: "date-time" }
+              **product_fields,
+              created_at: timestamp,
+              updated_at: timestamp
             },
             required: %w[id name description price category created_at updated_at]
           },
-          product_payload: {
+          product_create_payload: {
             type: :object,
             properties: {
               product: {
                 type: :object,
-                properties: {
-                  name: { type: :string, example: "Full Rack Ribs" },
-                  description: { type: :string, example: "Slow-cooked pork ribs with barbecue sauce." },
-                  price: { type: :integer, example: 9 },
-                  category: { type: :string, enum: Product.categories.keys, example: "ribs" }
-                }
+                properties: product_fields,
+                required: %w[name description price category]
+              }
+            },
+            required: %w[product]
+          },
+          product_update_payload: {
+            type: :object,
+            properties: {
+              product: {
+                type: :object,
+                description: "Only the fields to change.",
+                properties: product_fields
               }
             },
             required: %w[product]
@@ -56,9 +70,9 @@ RSpec.configure do |config|
             type: :object,
             properties: {
               id: { type: :integer, example: 1 },
-              delivery_address: { type: :string, example: "123 Main Street" },
-              created_at: { type: :string, format: "date-time" },
-              updated_at: { type: :string, format: "date-time" }
+              delivery_address: delivery_address,
+              created_at: timestamp,
+              updated_at: timestamp
             },
             required: %w[id delivery_address created_at updated_at]
           },
@@ -67,7 +81,7 @@ RSpec.configure do |config|
             properties: {
               order: {
                 type: :object,
-                properties: { delivery_address: { type: :string, example: "123 Main Street" } },
+                properties: { delivery_address: delivery_address },
                 required: %w[delivery_address]
               },
               items: {
@@ -90,7 +104,7 @@ RSpec.configure do |config|
             properties: {
               order: {
                 type: :object,
-                properties: { delivery_address: { type: :string, example: "123 Main Street" } }
+                properties: { delivery_address: delivery_address }
               }
             },
             required: %w[order]
