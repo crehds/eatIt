@@ -39,7 +39,7 @@ gem "bootsnap", require: false
 # Serve the OpenAPI document and Swagger UI at /api-docs [https://github.com/rswag/rswag]
 gem "rswag-api"
 gem "rswag-ui"
-# rswag-ui 2.17 requires ostruct without declaring it; Ruby 3.4 warns that ostruct leaves the default gems
+# rswag-ui 2.17 requires ostruct without declaring it, and Ruby 3.4 warns about that
 gem "ostruct"
 
 group :development, :test do

@@ -20,10 +20,12 @@ RSpec.describe "Orders API", type: :request do
 
     post "Creates an order with its items" do
       tags "Orders"
-      description "Creates the order and one detail per item in a single transaction: if anything fails, nothing is saved."
+      description "Creates the order and one detail per item in a single transaction: " \
+                  "if anything fails, nothing is saved."
       consumes "application/json"
       produces "application/json"
-      parameter name: :payload, in: :body, schema: { "$ref" => "#/components/schemas/order_create_payload" }
+      parameter name: :payload, in: :body,
+                schema: { "$ref" => "#/components/schemas/order_create_payload" }
 
       response "201", "order created" do
         schema "$ref" => "#/components/schemas/order"
@@ -47,7 +49,9 @@ RSpec.describe "Orders API", type: :request do
         ]
 
         context "without a delivery address" do
-          let(:payload) { { order: { delivery_address: "" }, items: [{ id: products.first.id, quantity: 1 }] } }
+          let(:payload) do
+            { order: { delivery_address: "" }, items: [{ id: products.first.id, quantity: 1 }] }
+          end
 
           run_test! do |response|
             expect(JSON.parse(response.body)).to include("delivery_address")
@@ -67,7 +71,9 @@ RSpec.describe "Orders API", type: :request do
 
       response "404", "an item references a product that does not exist" do
         schema "$ref" => "#/components/schemas/not_found"
-        let(:payload) { { order: { delivery_address: "123 Main Street" }, items: [{ id: 0, quantity: 1 }] } }
+        let(:payload) do
+          { order: { delivery_address: "123 Main Street" }, items: [{ id: 0, quantity: 1 }] }
+        end
 
         run_test! do
           expect(Order.count).to eq(0)
@@ -102,10 +108,12 @@ RSpec.describe "Orders API", type: :request do
 
     patch "Updates an order" do
       tags "Orders"
-      description "Only the delivery address can change. The API answers 201 Created. PUT /orders/{id} behaves the same way."
+      description "Only the delivery address can change. The API answers 201 Created. " \
+                  "PUT /orders/{id} behaves the same way."
       consumes "application/json"
       produces "application/json"
-      parameter name: :payload, in: :body, schema: { "$ref" => "#/components/schemas/order_update_payload" }
+      parameter name: :payload, in: :body,
+                schema: { "$ref" => "#/components/schemas/order_update_payload" }
 
       let(:id) { create(:order).id }
 
