@@ -14,6 +14,11 @@ RSpec.configure do |config|
   }
   delivery_address = { type: :string, example: "123 Main Street" }
   timestamp = { type: :string, format: "date-time" }
+  space = {
+    type: :boolean,
+    description: "true for the public demo data, false for the owner's private data",
+    example: true
+  }
 
   config.openapi_specs = {
     "v1/swagger.yaml" => {
@@ -54,10 +59,11 @@ RSpec.configure do |config|
             properties: {
               id: { type: :integer, example: 1 },
               **product_fields,
+              demo: space,
               created_at: timestamp,
               updated_at: timestamp
             },
-            required: %w[id name description price category created_at updated_at]
+            required: %w[id name description price category demo created_at updated_at]
           },
           product_create_payload: {
             type: :object,
@@ -86,10 +92,11 @@ RSpec.configure do |config|
             properties: {
               id: { type: :integer, example: 1 },
               delivery_address: delivery_address,
+              demo: space,
               created_at: timestamp,
               updated_at: timestamp
             },
-            required: %w[id delivery_address created_at updated_at]
+            required: %w[id delivery_address demo created_at updated_at]
           },
           order_create_payload: {
             type: :object,

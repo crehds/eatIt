@@ -39,6 +39,16 @@ RSpec.describe "API docs", type: :request do
     expect(document.dig("paths", "/products", "get", "responses")).to include("401")
   end
 
+  it "documents the demo field that products and orders return" do
+    document = YAML.safe_load_file(Rails.root.join("swagger/v1/swagger.yaml"))
+    schemas = document.dig("components", "schemas")
+
+    %w[product order].each do |name|
+      expect(schemas.dig(name, "properties", "demo", "type")).to eq("boolean")
+      expect(schemas.dig(name, "required")).to include("demo")
+    end
+  end
+
   it "keeps the Swagger UI from sending the docs URL to the swagger.io validator" do
     get "/api-docs/index.html"
 

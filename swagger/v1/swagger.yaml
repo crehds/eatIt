@@ -310,6 +310,11 @@ components:
           - ribs
           - tacos
           example: ribs
+        demo:
+          type: boolean
+          description: true for the public demo data, false for the owner's private
+            data
+          example: true
         created_at:
           type: string
           format: date-time
@@ -322,6 +327,7 @@ components:
       - description
       - price
       - category
+      - demo
       - created_at
       - updated_at
     product_create_payload:
@@ -399,6 +405,11 @@ components:
         delivery_address:
           type: string
           example: 123 Main Street
+        demo:
+          type: boolean
+          description: true for the public demo data, false for the owner's private
+            data
+          example: true
         created_at:
           type: string
           format: date-time
@@ -408,6 +419,7 @@ components:
       required:
       - id
       - delivery_address
+      - demo
       - created_at
       - updated_at
     order_create_payload:
